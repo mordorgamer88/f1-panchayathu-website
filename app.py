@@ -1,18 +1,16 @@
 from flask import Flask, render_template
 import fastf1
 import pandas as pd
+from IPython.display import HTML
 import matplotlib.pyplot as plt
 pd. set_option('display.max_rows', None)
 pd. set_option('display.max_columns', None)
 pd. set_option('display.width', None)
 pd. set_option('display.max_colwidth', None)
-session = fastf1.get_session(2019, 'Monza', 'Q')
+session = fastf1.get_session(2019, 'Sochi', 'Q')
 session.load()
-racedetail=[
+racedetail=session.results['BroadcastName'].to_string(index=False)
 
-       pd.DataFrame({'teamname':[session.results['TeamName']]})
-
-]
 app = Flask(__name__)
 
 @app.route('/')
